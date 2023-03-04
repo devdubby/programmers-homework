@@ -6,10 +6,11 @@ import storage from "./utils/storage.js";
 
   if (!data) {
     const data = await (await fetch("http://localhost:3000/data")).json();
-    storage.setItem("personalInfo", data);
+    const newData = [...data, ...data];
+    storage.setItem("personalInfo", newData);
     storage.setItem(
       "cardStatus",
-      data.map((info, index) => ({ idx: index, status: "card" }))
+      newData.map((info, index) => ({ idx: index, status: "card" }))
     );
   }
 })();

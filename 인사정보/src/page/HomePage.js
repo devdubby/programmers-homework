@@ -36,20 +36,18 @@ function HomePage({ $target }) {
   });
 
   this.infiniteScroll = function () {
-    let target = document.getElementById("cards_container").lastChild;
+    const target = document.getElementById("cards_container");
 
-    function callback(entry, observer) {
-      if (entry[0].isIntersecting) {
+    function callback(entries, observer) {
+      if (entries[0].isIntersecting) {
         // 스크롤이 끝에 도달하면 새로운 데이터를 가져오는 함수를 호출합니다.
-        console.log("testest");
+        console.log("끝에 도달!!!");
       }
     }
 
-    let options = {
-      threshold: 0.7, // 컨테이너 전체가 뷰포트 안에 있을 때 콜백이 실행됩니다.
-    };
-
-    let observer = new IntersectionObserver(callback, options);
+    const observer = new IntersectionObserver(callback, {
+      threshold: 0.7,
+    });
 
     observer.observe(target);
   };
